@@ -50,7 +50,7 @@ $present_date = date("Y-m-d");
                               </tr>
                             
                               <?php
-                                  $sql_attend = "SELECT * FROM student_info INNER JOIN course_taken ON student_info.student_id = course_taken.student_id GROUP BY student_info.student_id";
+                                  $sql_attend = "SELECT * FROM student_info JOIN course_taken ON student_info.student_id = course_taken.student_id WHERE course_taken.course_id = '$fatch_course_taken'";
                                   $quary_attend = mysqli_query($conn,$sql_attend);
                                   if(mysqli_num_rows($quary_attend) > 0){
                                       while($fatch_attend = mysqli_fetch_assoc($quary_attend) ){
@@ -67,17 +67,18 @@ $present_date = date("Y-m-d");
                                 <td style="padding:10px 35px;background-color:#ccc;">
                                 <input style="cursor:pointer" type="checkbox" name="present" value="1">  Present
                                 <input style="cursor:pointer" type="checkbox" name="absent" value="0"> Absent </td>
-                                
                               </tr>
                               <?php
                               
                               }
                             }
                               ?>
+                              <input style="cursor:pointer" type="checkbox" name="present" value="" checked hidden>  
+                                <input style="cursor:pointer" type="checkbox" name="absent" value="" checked hidden> </td>
 
                             <?php
 
-                                  $sql_attend = "SELECT * FROM student_info INNER JOIN course_taken ON student_info.student_id = course_taken.student_id GROUP BY student_info.student_id";
+                                  $sql_attend = "SELECT * FROM student_info JOIN course_taken ON student_info.student_id = course_taken.student_id WHERE course_taken.course_id = '$fatch_course_taken'";
                                   $quary_attend = mysqli_query($conn,$sql_attend);
                                   if(mysqli_num_rows($quary_attend) > 0){
                                       while($fatch_attend = mysqli_fetch_assoc($quary_attend) ){
@@ -89,12 +90,12 @@ $present_date = date("Y-m-d");
                                       
                                           $present = $_POST['present'];
                                           $absent = $_POST['absent'];
-                                          if($present == 1){
-                                            $sql = "INSERT INTO attendence(student_id,course_id,p_date,present,absents) VALUES ('$student_id','$course_id','$present_date','present','0')";
+                                          if($present == true){
+                                            $sql = "INSERT INTO attendence(student_id,course_id,p_date,	attendence) VALUES ('$student_id','$course_id','$present_date','present')";
                                             $result = mysqli_query($conn,$sql);
                                             $succeess_mgs = "Data Inserted";
-                                          }elseif($absent == 0){
-                                            $sql = "INSERT INTO attendence(student_id,course_id,p_date,present,absents) VALUES ('$student_id','$course_id','$present_date','0','absent')";
+                                          }elseif($absent == true){
+                                            $sql = "INSERT INTO attendence(student_id,course_id,p_date,	attendence) VALUES ('$student_id','$course_id','$present_date','absent')";
                                             $result = mysqli_query($conn,$sql);
                                             $succeess_mgs = "Data Inserted";
                                           }
