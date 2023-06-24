@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2023 at 04:06 AM
+-- Generation Time: Jun 24, 2023 at 05:28 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin_info` (
 --
 
 INSERT INTO `admin_info` (`id`, `emp_id`, `name`, `email`, `admin_pass`, `admin_depart`) VALUES
-(1, 1001, 'Mehedi Hasan Shojib', 'ahamed@cse.com', '123@abc', 'CSE'),
+(1, 1001, 'Ahamed Shojib', 'ahamed@cse.com', '123@abc', 'CSE'),
 (10, 1049, 'Choton', 'chotonshil88@gmail.com', 'Choton@@', 'EEE');
 
 -- --------------------------------------------------------
@@ -55,36 +55,8 @@ CREATE TABLE `attendence` (
   `student_id` int(11) NOT NULL,
   `course_id` varchar(10) NOT NULL,
   `p_date` date NOT NULL,
-  `present` varchar(10) NOT NULL,
-  `absents` varchar(10) NOT NULL
+  `attendence` enum('Present','Absent') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `attendence`
---
-
-INSERT INTO `attendence` (`id`, `student_id`, `course_id`, `p_date`, `present`, `absents`) VALUES
-(65, 212902069, 'CSE 101', '2023-06-23', 'Present', '0'),
-(66, 212902070, 'CSE 101', '2023-06-23', 'Present', '0'),
-(67, 221902001, 'CSE 101', '2023-06-23', 'Present', '0'),
-(68, 212902069, 'CSE 101', '2023-06-23', 'Present', '0'),
-(69, 212902070, 'CSE 101', '2023-06-23', 'Present', '0'),
-(70, 221902001, 'CSE 101', '2023-06-23', 'Present', '0'),
-(71, 212902069, 'CSE 101', '2023-06-23', '0', 'Absent'),
-(72, 212902070, 'CSE 101', '2023-06-23', '0', 'Absent'),
-(73, 221902001, 'CSE 101', '2023-06-23', '0', 'Absent'),
-(74, 212902069, 'CSE 101', '2023-06-23', 'Present', '0'),
-(75, 212902070, 'CSE 101', '2023-06-23', 'Present', '0'),
-(76, 221902001, 'CSE 101', '2023-06-23', 'Present', '0'),
-(77, 212902069, 'CSE 101', '2023-06-23', 'Present', '0'),
-(78, 212902070, 'CSE 101', '2023-06-23', 'Present', '0'),
-(79, 221902001, 'CSE 101', '2023-06-23', 'Present', '0'),
-(80, 212902069, 'CSE 101', '2023-06-23', 'present', '0'),
-(81, 212902070, 'CSE 101', '2023-06-23', 'present', '0'),
-(82, 221902001, 'CSE 101', '2023-06-23', 'present', '0'),
-(83, 212902069, 'CSE 101', '2023-06-23', 'present', '0'),
-(84, 212902070, 'CSE 101', '2023-06-23', 'present', '0'),
-(85, 221902001, 'CSE 101', '2023-06-23', 'present', '0');
 
 -- --------------------------------------------------------
 
@@ -111,7 +83,8 @@ INSERT INTO `course_offer` (`id`, `batch`, `semester`, `course_id`, `course_name
 (5, 212, 'Summer_21', 'CSE 101', 'Structrued Programming', 3, 4000, 'Fri(09:30 AM - 11:00 AM) Sat(08:00 AM - 09:30 AM)'),
 (6, 211, 'Summer_22', 'CSE 102', 'C Programming', 2.5, 3500, 'Tue(09:30 AM - 11:00 AM) Thu(08:00 AM - 09:30 AM)'),
 (7, 212, 'Spring_22', 'EEE 101', 'Introduction Of Electronic', 3, 4000, 'Mon(03:30 PM - 05:00 PM) Wed(03:30 PM - 05:00 PM)'),
-(8, 211, 'Summer_22', 'EAP 101', 'English I', 2.5, 3500, 'Mon(02:00 PM - 03:30 PM) Wed(01:30 PM - 03:30 PM)');
+(8, 211, 'Summer_22', 'EAP 101', 'English I', 2.5, 3500, 'Mon(02:00 PM - 03:30 PM) Wed(01:30 PM - 03:30 PM)'),
+(9, 222, 'Fall_21', 'GED 310', 'Economic', 3, 4000, 'Tue(09:30 AM - 11:00 AM) Thu(08:00 AM - 09:30 AM)');
 
 --
 -- Triggers `course_offer`
@@ -169,7 +142,8 @@ INSERT INTO `course_taken` (`id`, `student_id`, `semester`, `course_id`, `course
 (12, 212902070, 'Summer_21', 'CSE 101', 'Structrued Programming', 3, 4000, 'Fri(09:30 AM - 11:00 AM) Sat(08:00 AM - 09:30 AM)'),
 (13, 212902070, 'Spring_22', 'EEE 101', 'Introduction Of Electronic', 3, 4000, 'Mon(03:30 PM - 05:00 PM) Wed(03:30 PM - 05:00 PM)'),
 (15, 221902001, 'Summer_21', 'CSE 101', 'Structrued Programming', 3, 4000, 'Fri(09:30 AM - 11:00 AM) Sat(08:00 AM - 09:30 AM)'),
-(16, 221902001, 'Spring_22', 'EEE 101', 'Introduction Of Electronic', 3, 4000, 'Mon(03:30 PM - 05:00 PM) Wed(03:30 PM - 05:00 PM)');
+(16, 221902001, 'Spring_22', 'EEE 101', 'Introduction Of Electronic', 3, 4000, 'Mon(03:30 PM - 05:00 PM) Wed(03:30 PM - 05:00 PM)'),
+(17, 221902001, 'Fall_21', 'GED 310', 'Economic', 3, 4000, 'Tue(09:30 AM - 11:00 AM) Thu(08:00 AM - 09:30 AM)');
 
 -- --------------------------------------------------------
 
@@ -307,19 +281,19 @@ ALTER TABLE `admin_info`
 -- AUTO_INCREMENT for table `attendence`
 --
 ALTER TABLE `attendence`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `course_offer`
 --
 ALTER TABLE `course_offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `course_taken`
 --
 ALTER TABLE `course_taken`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `result`
